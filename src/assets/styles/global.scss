@@ -1,0 +1,43 @@
+// Font adjusting
+@font-face {
+    font-family: 'Roboto';
+    src: url('./../fonts/roboto/Roboto-Regular.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./../fonts/roboto/Roboto-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./../fonts/roboto/Roboto-Light.ttf');
+    font-weight: 200;
+}
+
+*, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body {
+    font-size: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+a, img, video, picture, svg {
+    display: block;
+}
+
+.sectionx {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+

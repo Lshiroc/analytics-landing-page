@@ -1,0 +1,342 @@
+@use './../../assets/styles/vars';
+
+@mixin gridAuto($elements: 2, $gap: 20px) {
+    display: grid;
+    grid-template-columns: repeat($elements, auto);
+    align-items: center;
+    column-gap: $gap;
+}
+
+.navbar {
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 50px;
+    position: absolute;
+
+    .menuLeft {
+        @include gridAuto($gap: 82px);
+
+        .logo {
+            width: 185px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .menu {
+            @include gridAuto($elements: 5, $gap: 36px);
+
+            .menuItem {
+                font-size: 16px;
+                font-weight: 400;
+                color: vars.$lightBlue;
+            }
+        }
+    }
+
+    .menuFunctions {
+        @include gridAuto($gap: 40px);
+        color: vars.$lightBlue;
+        
+        .function {
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 10px 53px;
+            border: 1px solid #465B95;
+            border-radius: 68px;
+            cursor: pointer;
+        }
+
+        .menuBtn {
+            width: 38px;
+            height: 38px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .open {
+                width: 24px;
+                height: 24px;
+                display: block;
+            }
+
+            .close {
+                width: 38px;
+                height: 38px;
+                display: none;
+            }
+
+            &.open {
+                .open {
+                    display: none;
+                }
+
+                .close {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .mobileMenu {
+        padding: 15px 20px;
+        position: absolute;
+        top: 85px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: vars.$darkBlue; 
+        display: none;
+        grid-template-rows: repeat(5, auto);
+        row-gap: 20px;
+        z-index: 1;
+
+        .menuItem {
+            color: vars.$lightBlue;
+
+            &:active, &:visited {
+                color: vars.$lightBlue;
+            }
+        }
+    }
+}
+
+@mixin button($paddingHorizontal) {
+    display: inline-block;
+    padding: 10px $paddingHorizontal;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 68px;
+}
+
+
+.hero {
+    width: 100%;
+    height: 825px;
+    display: flex;
+    align-items: center;
+    background-image: url('./../../assets/images/bg1.png'), url('./../../assets/images/bg2.png'), url('./../../assets/images/heroBg1.png'), url('./../../assets/images/heroBg2.svg');
+    background-position: top left,
+                         top center,
+                         top center,
+                         center bottom;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+    .content {
+        display: grid;
+        grid-template-columns: 550px calc(100% - 469px);
+        align-items: center;
+        column-gap: 150px;
+
+        .info {
+            .title {
+                font-size: 50px;
+                font-weight: 700;
+                line-height: 60px;
+                color: vars.$white;
+                margin-bottom: 15px;
+            }
+
+            .text {
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 27px;
+                color: vars.$lightBlue;
+                margin-bottom: 50px;
+            }
+
+            .btn {
+                @include button($paddingHorizontal: 80px);
+                background-color: vars.$pink;
+                color: vars.$white;
+                line-height: 30px;
+            }
+        }
+
+        .imgContainer {
+            position: relative;
+            display: grid;
+            align-items: center;
+            -webkit-user-select: none;
+            user-select: none;
+
+            @keyframes appear {
+                0% {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0px);
+                }
+            }
+            
+            .bars {
+                width: 360px;
+                background-color: vars.$white;
+                position: absolute;
+                border-radius: 32px;
+                left: -69px;
+                opacity: 0;
+                transition: 0.3s;
+                z-index: 1;
+                animation-name: appear;
+                animation-duration: 1s;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+                animation-delay: 1.5s;
+
+
+                .barsContainer {
+                    padding: 26px 48px 36px 34px;
+                    box-shadow: 0px 19.224853515625px 53.40237045288086px -16.02071189880371px rgba(25, 42, 89, 0.20);
+                    border-radius: 32px;
+
+                    img {
+                        width: 100%; 
+                    }
+                }
+            }
+
+            .img {
+                padding: 25px 32px;
+                background-color: #FFFFFF;
+                border-radius: 30px;
+                box-shadow: 0px 18px 50px -15px rgba(25, 42, 89, 0.20);
+                opacity: 0;
+                transition: 0.3s;
+                animation-delay: 1s;
+                animation-name: appear;
+                animation-duration: .5s;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    .hero {
+        background-size: 40%, auto, auto, auto;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .hero .content {
+        grid-template-columns: 450px calc(100% - 450px - 69px);
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .navbar {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        box-shadow: 0px 4px 4px 0px #12214D;
+        background: vars.$darkBlue;
+        position: relative;
+
+        .menuLeft {
+            column-gap: 10px;
+
+            .logo {
+                width: 138px;
+            }
+
+            .menu {
+                display: none;
+            }
+        }
+
+        .menuFunctions {
+            .btn {
+                display: none;
+            }
+
+            .menuBtn {
+                display: flex;
+            }
+        }
+
+        .mobileMenu {
+            display: grid;
+            visibility: hidden;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: .4s;
+
+            &.open {
+                visibility: visible;
+                transform: scaleY(1);
+            }
+        }
+    }
+
+    .hero {
+        height: auto;
+        padding-bottom: 80px;
+        background-image: url('./../../assets/images/heroBg1.png'), url('./../../assets/images/heroBg2.svg');
+        background-size: cover, 100%;
+        background-position: 10% center, center bottom ;
+        align-items: flex-start;
+        padding-top: 30px;
+
+        .content {
+            grid-template-columns: 100%;
+            grid-template-rows: auto auto;
+            row-gap: 26px;
+
+            .info {
+                grid-row: 2 / 3;
+
+                .title {
+                    font-size: 31px;
+                    line-height: 37px;
+                }
+
+                .text {
+                    margin-bottom: 26px;
+                }
+            }
+
+            .imgContainer {
+                grid-row: 1 / 2;
+
+                .bars {
+                    display: none;
+                }
+
+                .img {
+                    width: 100%;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 556px) {
+    .hero .content .info {
+        .btn {
+            width: 100%;
+            padding: 10px auto;
+            text-align: center;
+        }
+    }
+}

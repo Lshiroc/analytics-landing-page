@@ -30,9 +30,19 @@ a, img, video, picture, svg {
   display: block;
 }
 
+#root {
+  position: relative;
+}
+
 .sectionx {
   max-width: 1180px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .sectionx {
+    max-width: 100%;
+  }
 }/*# sourceMappingURL=global.css.map */
